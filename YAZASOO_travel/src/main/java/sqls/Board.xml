@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="Board">
+	<insert id="qwrite" parameterType="mul.camp.a.dto.oneOoneDto">
+		INSERT INTO Y_QUESTION(ID,QTYPE,QTITLE,QCONTENT,DEL,IDX,REGDATE, ANSWERYN)
+		VALUES(#{id},#{qtype},#{qtitle},#{qcontent},'N',qidx.NEXTVAL,SYSDATE, 'N')
+	</insert>
+	
+	<insert id="write" parameterType="mul.camp.a.dto.boardDto">
+		INSERT INTO Y_BOARD(IDX, TITLE, CONTENT, ID, REGDATE, CNT, DEL, SPOT) 
+		VALUES(bidx.NEXTVAL, #{title}, #{content}, #{id}, SYSDATE, 0, 'N', #{spot})
+	</insert>
+	
+	<select id="authChk" parameterType="String" resultType="mul.camp.a.dto.MemberDto">
+		SELECT * 
+		FROM Y_MEMBER
+		WHERE ID=#{id}
+	</select>
+	
+	<select id="qlist" parameterType="Integer" resultType="mul.camp.a.dto.oneOoneDto">
+		SELECT * 
+		FROM Y_QUESTION
+		WHERE IDX=#{idx}
+	</select>
+	
+	<select id="qboard" parameterType="mul.camp.a.dto.MyParam" resultType="mul.camp.a.dto.oneOoneDto">
+		SELECT * 
+		FROM Y_QUESTION
+		WHERE ID=#{id} AND DEL = 'N'
+		<if test="sort != null and sort !=''">
+			<choose>
+			      <when test="sort =='aa'">
+			       AND QTYPE = '계정 관리'
+			      </when>
+			      <when test="sort =='bb'">
+			       AND QTYPE = '내글 관리'
+			      </when>
+			      <when test="sort =='cc'">
+			       AND QTYPE = '유저 신고' 
+			      </when>
+			   </choose>
+		</if>
+		<if test="ansChk !=null and ansChk !=''">
+			<choose>
+			      <when test="ansChk =='yes'">
+			       AND ANSWERYN = 'Y'     
+			      </when>
+			      <when test="ansChk =='no'">
+			       AND ANSWERYN = 'N' 
+			      </when>
+			   </choose>
+		</if>
+		ORDER BY REGDATE DESC
+	</select>
+	
+	<select id="qallboard" resultType="mul.camp.a.dto.oneOoneDto">
+		SELECT * 
+		FROM Y_QUESTION
+		WHERE DEL='N'
+		<if test="sort != null and sort !=''">
+			<choose>
+			      <when test="sort =='aa'">
+			       AND QTYPE = '계정 관리'
+			      </when>
+			      <when test="sort =='bb'">
+			       AND QTYPE = '내글 관리'
+			      </when>
+			      <when test="sort =='cc'">
+			       AND QTYPE = '유저 신고' 
+			      </when>
+			   </choose>
+		</if>
+		<if test="ansChk !=null and ansChk !=''">
+			<choose>
+			      <when test="ansChk =='yes'">
+			       AND ANSWERYN = 'Y'     
+			      </when>
+			      <when test="ansChk =='no'">
+			       AND ANSWERYN = 'N' 
+			      </when>
+			   </choose>
+		</if>
+		ORDER BY REGDATE DESC
+	</select>
+	
+	<select id="detail" parameterType="Integer" resultType="mul.camp.a.dto.boardDto">
+		SELECT * FROM Y_BOARD
+		WHERE IDX = #{idx}
+	</select>
+	
+	<update id="del" parameterType="Integer">
+		UPDATE Y_BOARD
+		SET DEL = 'Y'
+		WHERE IDX = #{idx}
+	</update>
+	
+	<update id="qdel" parameterType="Integer">
+		UPDATE Y_QUESTION
+		SET DEL = 'Y'
+		WHERE IDX = #{idx}
+	</update>
+	
+	<update id="readcnt" parameterType="Integer">
+      UPDATE Y_BOARD
+      SET CNT = CNT + 1
+      WHERE IDX = #{idx}
+   </update><!-- 조회수 -->
+
+	
+	<update id="update" parameterType="mul.camp.a.dto.boardDto">
+		UPDATE Y_BOARD
+		SET TITLE = #{title}, SPOT = #{spot}, CONTENT = #{content}
+		WHERE IDX = #{idx} 
+	</update>
+	
+	<select id="bbslist" resultType="mul.camp.a.dto.boardDto" parameterType="mul.camp.a.dto.BbsParam">
+	   SELECT *
+	   FROM Y_BOARD
+	   <choose>
+		   <when test="choice !=null and choice !='' and search !=null and search !=''">
+		   <choose>
+		      <when test="choice =='title'">
+		         WHERE DEL = 'N' AND TITLE LIKE '%'||#{search}||'%'           
+		      </when>
+		      <when test="choice =='content'">
+		         WHERE DEL = 'N' AND CONTENT LIKE '%'||#{search}||'%' 
+		      </when>
+		      <when test="choice =='writer'">
+		         WHERE DEL = 'N' AND ID LIKE '%'||#{search}||'%' 
+		      </when>
+		   </choose>
+		   <if test="spot != null and spot != ''">
+		   		AND SPOT = #{spot}
+		   </if>
+		   </when> 
+	   		<otherwise>
+	   			WHERE DEL = 'N'
+		   		<if test="spot != null and spot != ''">
+			   		AND SPOT = #{spot}
+			   </if>
+	   		</otherwise>
+	   </choose>
+	   ORDER BY IDX DESC
+	</select>
+</mapper>

@@ -1,0 +1,66 @@
+@charset "UTF-8"; /*요거 지우지 마세요~*/
+/* ---- General styling starts ---- */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
+
+
+/*여기까지 복사한것 */
+button {
+  width: 150px;
+  height: 40px;
+  
+  font-size: 20px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-weight: 100;
+  border: none;
+  border-radius: 15px;
+  background-color: #333;
+  color: white;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 100px;
+  margin-bottom: 2px;
+  transition: background 0.5s ease-in-out;
+}
+
+.goLogin {
+  text-align: center;
+  margin-top: -10px;
+}
+
+.goLogin a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 12px;
+}
+
+.goLogin a:hover {
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  color: #000000;
+}
+a:hover {color: #808080;}
+
+/* 테이블 색상 (중요하지 않음) */
+table {
+  width: 80%;
+  margin: 40px auto 10px;
+  border-collapse: collapse;
+}
+th {
+  background: #333;
+  color: #fff;
+}
+td, th {
+  border: 1px solid #dbdbdb;
+  padding: 5px 20px;
+  font-size:12px;
+}
+tr:nth-of-type(odd) { 
+	background: #eee; 
+}
+

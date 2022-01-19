@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="Comment">
+
+	<insert id="commentWrite" parameterType="mul.camp.a.dto.commentDto">
+		INSERT INTO Y_COMMENT(IDX, BIDX, TEXT, REGDATE, ID, DEL) 
+		VALUES(cidx.NEXTVAL, #{bidx}, #{text}, SYSDATE, #{id}, 'N')
+	</insert>
+	
+	<update id="commentDel" parameterType="mul.camp.a.dto.commentDto">
+		UPDATE Y_COMMENT
+		SET DEL = 'Y'
+		WHERE IDX = #{idx}
+	</update>
+		
+	<update id="qcommentWrite" parameterType="mul.camp.a.dto.commentDto">
+		UPDATE Y_QUESTION
+		SET ANSWERYN = 'Y', ANSWER = #{text}
+		WHERE IDX = #{idx}
+	</update>
+		
+	<update id="qcommentDel" parameterType="mul.camp.a.dto.commentDto">
+		UPDATE Y_QUESTION
+		SET ANSWERYN = 'N', ANSWER = NULL
+		WHERE IDX = #{idx}
+	</update>
+	
+	<select id="commentlist" parameterType="Integer" resultType="mul.camp.a.dto.commentDto">
+		SELECT *
+		FROM Y_COMMENT
+		WHERE BIDX = #{idx} AND DEL = 'N'
+		ORDER BY REGDATE DESC
+	</select>
+	
+	<update id="qcommentUpdate" parameterType="mul.camp.a.dto.commentDto">
+		UPDATE Y_QUESTION
+		SET ANSWER = #{text}
+		WHERE IDX = #{idx}
+	</update>
+	
+</mapper>

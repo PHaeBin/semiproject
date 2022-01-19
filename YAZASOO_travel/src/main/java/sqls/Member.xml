@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        
+<mapper namespace="Y_MEMBER">
+	<insert id="addmember" parameterType="mul.camp.a.dto.MemberDto">
+		INSERT INTO Y_MEMBER(ID, PW, NAME, GENDER, BIRTH, EMAIL, PHONE, NICKNAME, DEL)
+		VALUES(#{id}, #{pw}, #{name}, #{gender}, #{birth}, #{email}, #{phone}, #{nickName}, 'N')
+	</insert>
+	
+	<select id="getId" parameterType="String" resultType="Integer">
+		SELECT COUNT(*)
+		FROM Y_MEMBER
+		WHERE ID=#{id}
+	</select>
+	
+	<select id="mylist" parameterType="mul.camp.a.dto.MemberDto" resultType="mul.camp.a.dto.boardDto">
+		SELECT *
+		FROM Y_BOARD
+		WHERE ID=#{id} AND DEL = 'N'
+		ORDER BY REGDATE DESC
+	</select>
+	
+	<select id="memberlist" parameterType="String" resultType="mul.camp.a.dto.MemberDto">
+		SELECT *
+		FROM Y_MEMBER
+		WHERE ID != #{id}
+	</select>
+	
+	<select id="login" parameterType="mul.camp.a.dto.MemberDto" 
+      resultType="mul.camp.a.dto.MemberDto">
+      SELECT ID, NAME, EMAIL,AUTH, PW
+      FROM Y_MEMBER
+      WHERE ID=#{id} AND PW=#{pw} AND DEL = 'N'
+   </select>
+   
+   <select id="getEmail" parameterType="String" resultType="Integer">
+      SELECT COUNT(*)
+      FROM Y_MEMBER
+      WHERE EMAIL=#{email}
+   </select>
+   
+   <!-- 회원 수정 -->
+   <select id="modify" parameterType="mul.camp.a.dto.MemberDto" resultType="mul.camp.a.dto.MemberDto">
+   SELECT *
+   FROM Y_MEMBER
+   WHERE ID=#{id}
+   </select>
+   
+   <!-- 회원 정보 수정 -->
+   <update id="memberUpdate" parameterType="mul.camp.a.dto.MemberDto" >
+	   UPDATE Y_MEMBER 
+	   SET PW=#{pw}, NAME=#{name}, EMAIL=#{email}, PHONE=#{phone}, NICKNAME=#{nickName}
+	   WHERE ID=#{id}
+   </update>
+   
+   <!-- 회원 탈퇴 -->
+	<update id="memberDelete" parameterType="String" >
+	   UPDATE Y_MEMBER 
+	   SET DEL = 'Y'
+	   WHERE ID = #{id}
+	</update>
+	
+	<!-- 회원 복구 -->
+	<update id="deln" parameterType="String" >
+	   UPDATE Y_MEMBER 
+	   SET DEL = 'N'
+	   WHERE ID = #{id}
+	</update>
+	
+	<!-- 권한 변경 -->
+	<update id="authChange" parameterType="mul.camp.a.dto.MemberDto" >
+	   UPDATE Y_MEMBER 
+	   SET AUTH = #{auth}
+	    WHERE ID = #{id}
+	</update>
+</mapper>
+
+

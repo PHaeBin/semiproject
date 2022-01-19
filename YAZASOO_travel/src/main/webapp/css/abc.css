@@ -1,0 +1,157 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+@font-face {
+  font-family: 'score';
+  src: url("font/SCDream5.otf") format('truetype');
+}
+@font-face {
+  font-family: 'score-slim';
+  src: url("font/SCDream1.otf") format('truetype');
+}
+    *{margin: 0; padding: 0; font-family: 'score', 'Noto Sans KR', sans-serif;}
+    body{
+      font-family: 'score', 'Noto Sans KR', sans-serif;
+    }
+    .main-word{
+      font-family: 'score', 'Noto Sans KR', sans-serif;
+    }
+    #logo {font-weight: 900; font-size: 24px;}
+    .weather-icon {width:30px; position: relative; top: 5px; right:6px;}
+    .map-icon {width:30px; position: relative; top: 7px; right:6px;}
+    .com-icon {width:28px; position: relative; top: 3px; right:6px;}
+    a{text-decoration: none; }
+    li{list-style: none;}
+    .main-header{padding: 0 30px; background: linear-gradient(to right, gray, gray 50%, #f2f2f2 50%,#f2f2f2 );}
+    .visual{ width: 1110; height: 550px; margin-top: 55px; text-align: center;  margin-bottom: 5px;} 
+    .img{display: inline-block;}
+    .main-word{margin-top: 120px;
+              font-size: 42px;
+              font-weight: 900;
+            text-align: center;
+            overflow: hidden;
+            font-family: 'score'; }
+    .main-green{color:#04cf5c;}        
+    h1{position: absolute; left: 30px; top: 0; }
+    h3{font-size: 52px; position:absolute; top: 140px; left:400px; font-weight:900;}
+    .sub-text{position:absolute; top: 300px; left:410px; font-size:18px; color:#323435; font-weight:600;}
+    .search-bar{position:absolute; top: 340px; left:400px; width:392px; height:56px; border-radius: 500px; border-color:#d4cbcb; border-style:solid; font-size: 24px; padding:0 46px 0 22px;}
+    .search-bar:focus{outline:1px solid #04cf5c; border-color:#04cf5c;}
+    #search-icon{position:relative; top: 237px; left:822px; color:#d4cbcb;}
+    #search-icon:hover{color:#04cf5c; transform:scale(1.2);}
+    .header-search-bar{position: absolute; right:30px ; top: 0; display: flex; width: 170px; margin-top: 20px; }
+    .submit .text{flex: 1;}
+    .text{display: block;
+            float: left;
+            background-color: #ffffff;
+            border: 1px solid #cccccc;
+            box-shadow: inset 0 1px 1px rgba(0, 0,0, 0.05);
+            width: 120px;
+            height: 25px;
+            padding: 0 0 0 10px;
+            font-size: 12px;
+            color: #555555;
+            margin-top: 2px;
+            border-radius: 10px 0 0 10px;} 
+
+     .submit{ margin-top: 2px;
+        display: block;
+            float: left;
+            width: 70px; height: 27px;
+            border: 1px solid #cccccc;
+            margin-left: -1px;
+            border-radius: 0 10px 10px 0;
+            }   
+    .menu ul li a {color: black; font-weight: bold;}           
+    .header-tag {background: #fff; position: absolute; padding: 0 232px; left: 0; top: 0; width: 100%; box-sizing: border-box; z-index: 30; border-bottom: 1px solid rgba(102, 102, 102, 0.5);}
+    .header-tag nav{position: relative; bottom:3px; z-index: 30;
+    text-align: center; font-size: 0;}
+    .header-tag nav > ul { display: inline-block;  overflow: hidden; height: 70px; transition: all 0.5s;}
+    .header-tag nav > ul:hover {overflow: visible;}
+    .header-tag nav + div {position: absolute; left: 0; top: 0; width: 100%; height: 0; background:#fff; 
+    opacity: 0; z-index: 29px; transition: all 0.5s;}
+    .header-tag nav:hover + div { height: 490px; opacity: 1;}
+    .header-tag nav > ul > li {display: inline-block; position: relative;}
+    .header-tag nav > ul > li > a {color: #323436; display: block; position: relative; width: 150px; height: 69px; font-size: 18px; font-weight: 600; line-height: 69px;}
+    .header-tag nav > ul > li > a::after{content: ""; position: absolute; left: 50px; width: 0; bottom: -1px; 
+    height: 2px; background:#04cf5c; transition: all 0.5s;}
+    .header-tag nav > ul > li:hover > a:after{left: 0; width: 100%;}
+
+    .header-tag nav > ul ul { position: absolute; width: 100px; text-align: center; height: 230px; padding: 22px 0 0;  opacity: 0; transition: all 0.5s;}
+    .header-tag nav > ul:hover ul{ opacity: 1;}
+
+    .header-tag nav > ul ul li{line-height: 39px;}
+    /* 서브메뉴 */
+    .header-tag nav > ul ul a {position: relative; left:22px; font-size: 14px; color: rgb(0, 0, 0); transition: all 0.5s; }  
+
+    .header-tag nav > ul ul a:hover {color:#04cf5c;}  
+    .header-tag nav > ul ul a::after{content: ""; position: absolute;  left: 5px; width: 0; bottom: -7px; 
+    height: 2px; background: #00b34d; transition: all 0.5s;}  
+    .header-tag nav > ul ul a:hover::after{left: 0; width: 100%;}
+    
+    .menu{border-top: 1px solid black; border-bottom: 1px solid black ;  text-align: center;border-top: 1px solid #d4cbcb;
+        border-bottom: 1px solid #d4cbcb;
+        margin: o auto;
+        }
+    .menu ul li{display: inline-block; position: relative; width: 200px; font-size: 20px; margin-top: 10px; margin-bottom: 10px;}
+
+    .content{margin-top: 120px; margin-bottom: 20px; }
+    .content p {font-size: 30px; text-align: center;}
+    
+    .content-picture {text-align: center;} 
+    .content-picture ul li{
+        border: 1px solid  #d4cbcb;
+        width: 350px; height: 350px;
+        display: inline-block;
+        margin: 15px;
+    }
+    .content-text{text-align: center;}
+    .content-text ul li{display: inline-block;
+        width: 380px; height: 350px;}
+    .content-text ul a{color: black;}
+    
+    footer{
+        position:relative;
+        left:403px;
+        margin-top: 0px;
+        height: 0px;
+        background-color: #eee;
+        border: 0px solid  #eee;
+        color:#5e5e5e;
+    }
+    footer ul{margin-top: 10px; display: flex;}
+    .first-line{padding-top:20px; font-size:20px; color:#323435; font-weight:700;}
+    .consulting{padding-bottom:20px; position:relative;}
+    .consulting-title{font-weight:600;}
+    .team-member{padding-bottom:20px; position:absolute; left:804px;}
+   
+
+   /* 반응형지도 css */
+   h2{font-size:18px; text-align:left; margin:0; padding:5px 10px; color:#323436;}
+   #canvas {position:relative; top:324px; left:330px; width: 620px; height:400px; margin: 0}
+   #south {width: 320px; height:400px; position: absolute; top: 0; left: -5px;}
+
+   /* #seoul {display:none; position:absolute; left:10px; top:80px; width:80px; height:30px; border:1px solid #ccc;} */
+   #seoul, #gygg, #incheon, #gangwon, #chungbuk, #chungnam, #daejeon, #sejong, #jeonbuk, #jeonnam, #gwangju, #gyeongbuk, #gyeongnam, #daegu, #gwangju, #busan, #ulsan, #jeju { display: none; position: absolute; left:320px; top: 0; width: 300px; height:400px;}
+
+   .area_text{margin:0; padding:8px 0 10px 15px; font-size:16px; color:#555555;}
+
+
+	.btn button {
+    	  width: 130px;
+    	  height: 30px;
+    	  
+    	  font-size: 15px;
+    	  font-family: 'Noto Sans KR', sans-serif;
+    	  font-weight: 100;
+    	  border: none;
+    	  border-radius: 15px;
+    	  background-color: #333;
+    	  color: #fff;
+    	  cursor: pointer;
+    	  border: 1px solid rgba(255, 255, 255, 0.3);
+    	  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    	  margin-top: 10px;
+    	  margin-bottom: 10px;
+    	  transition: background 0.5s ease-in-out;
+    	}
+   
